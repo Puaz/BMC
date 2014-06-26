@@ -1,0 +1,248 @@
+
+gamePack.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Code_Background
+  rotate: false
+  xy: 2, 221
+  size: 480, 800
+  orig: 480, 800
+  offset: 0, 0
+  index: -1
+Code_Blue
+  rotate: false
+  xy: 2, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+Code_BtnCheck
+  rotate: false
+  xy: 561, 809
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+Code_BtnCheckDown
+  rotate: false
+  xy: 156, 7
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+Code_FullHit
+  rotate: false
+  xy: 484, 655
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+Code_Green
+  rotate: false
+  xy: 404, 144
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+Code_HalfHit
+  rotate: false
+  xy: 561, 737
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+Code_Purple
+  rotate: false
+  xy: 484, 804
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+Code_Red
+  rotate: false
+  xy: 886, 946
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+Rojo2
+  rotate: false
+  xy: 886, 946
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+Code_White
+  rotate: false
+  xy: 79, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+Code_WinnerMessage
+  rotate: false
+  xy: 2, 79
+  size: 400, 140
+  orig: 400, 140
+  offset: 0, 0
+  index: -1
+Code_Yellow
+  rotate: false
+  xy: 484, 727
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+Lose
+  rotate: false
+  xy: 484, 881
+  size: 400, 140
+  orig: 400, 140
+  offset: 0, 0
+  index: -1
+
+gamePack2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Olds/Code_Background1
+  rotate: false
+  xy: 2, 216
+  size: 480, 800
+  orig: 480, 800
+  offset: 0, 0
+  index: -1
+Olds/Code_Blue2
+  rotate: false
+  xy: 2, 2
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: 1
+Olds/Code_BtnCheck
+  rotate: false
+  xy: 484, 574
+  size: 150, 100
+  orig: 150, 100
+  offset: 0, 0
+  index: -1
+Olds/Code_BtnCheck
+  rotate: false
+  xy: 404, 144
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+Olds/Code_BtnCheckDown
+  rotate: false
+  xy: 484, 472
+  size: 150, 100
+  orig: 150, 100
+  offset: 0, 0
+  index: -1
+Olds/Code_FullHit
+  rotate: false
+  xy: 576, 400
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+Olds/Code_Green
+  rotate: false
+  xy: 728, 502
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+Olds/Code_HalfHit
+  rotate: false
+  xy: 820, 604
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+Olds/Code_HalfHit (2)
+  rotate: false
+  xy: 74, 2
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+Olds/Code_Purple
+  rotate: false
+  xy: 576, 328
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+Olds/Code_Red
+  rotate: false
+  xy: 648, 400
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+Olds/Code_White
+  rotate: false
+  xy: 892, 604
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+Olds/Code_WinnerMessage1
+  rotate: false
+  xy: 2, 74
+  size: 400, 140
+  orig: 400, 140
+  offset: 0, 0
+  index: -1
+Olds/Code_Yellow
+  rotate: false
+  xy: 146, 2
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+Olds/_Background
+  rotate: false
+  xy: 484, 676
+  size: 480, 340
+  orig: 480, 340
+  offset: 0, 0
+  index: 2
+Olds/_Blue
+  rotate: false
+  xy: 636, 574
+  size: 90, 100
+  orig: 90, 100
+  offset: 0, 0
+  index: -1
+Olds/_Green
+  rotate: false
+  xy: 484, 370
+  size: 90, 100
+  orig: 90, 100
+  offset: 0, 0
+  index: -1
+Olds/_Purple
+  rotate: false
+  xy: 636, 472
+  size: 90, 100
+  orig: 90, 100
+  offset: 0, 0
+  index: -1
+Olds/_Red
+  rotate: false
+  xy: 728, 574
+  size: 90, 100
+  orig: 90, 100
+  offset: 0, 0
+  index: -1
+Olds/_Yellow
+  rotate: false
+  xy: 484, 268
+  size: 90, 100
+  orig: 90, 100
+  offset: 0, 0
+  index: -1
