@@ -48,6 +48,8 @@ public class CodeBreak implements ApplicationListener {
 	private static int whiteId;
 	private boolean btnCheckIsVisible;
 	private boolean winnerMessageIsVisible;
+	private boolean LoserMessageIsVisible;
+	private boolean helpMessageIsVisible;
 	private int round;
 	private boolean codeIsCorrect;
 	private int[] fullHits;
@@ -67,6 +69,8 @@ public class CodeBreak implements ApplicationListener {
 		batch = new SpriteBatch();
 		btnCheckIsVisible = false;
 		winnerMessageIsVisible = false;
+		LoserMessageIsVisible = false;
+		helpMessageIsVisible = false;
 		firstSpaceIsEmpty = new boolean[]{true,true,true,true,true,true,true,true,true};
 		secondSpaceIsEmpty = new boolean[]{true,true,true,true,true,true,true,true,true};
 		thirdSpaceIsEmpty = new boolean[]{true,true,true,true,true,true,true,true,true};
@@ -122,11 +126,17 @@ public class CodeBreak implements ApplicationListener {
 		BoundingBox thirdSpaceBound = new BoundingBox();
 		BoundingBox fourthSpaceBound = new BoundingBox();
 		BoundingBox btnCheckBound = new BoundingBox();
+		BoundingBox btnTryAgainBound = new BoundingBox();
+		BoundingBox helpBound = new BoundingBox();
+		BoundingBox closeHelpBound = new BoundingBox();
 		
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		
 		batch.draw(assetsManager.background, -width/2, -height/2, width, height);
+		batch.draw(assetsManager.help, halfWidth - 50, halfHeight -50, 34, 34);
+		helpBound = new BoundingBox(new Vector3 (halfWidth -48, halfHeight - 48,0), new Vector3( halfWidth -18, halfHeight-18,0));
+		
 		//
 		
 		batch.draw(assetsManager.Blue, -halfWidth + 27f,-halfHeight + 29f, 75, 75);
@@ -184,7 +194,18 @@ public class CodeBreak implements ApplicationListener {
 		
 		if (winnerMessageIsVisible){
 			batch.draw(assetsManager.winnerMessage, -200,-70, 400, 140);
+		} else {
+			if (LoserMessageIsVisible){
+				batch.draw(assetsManager.loserMessage, -200,-70, 400, 140);
+				batch.draw(assetsManager.tryAgain, -22, -60, 44, 44);
+				btnTryAgainBound = new BoundingBox(new Vector3(-20f,-60f,0), new Vector3(20f,-20f,0));
+			}
 		}
+		if(helpMessageIsVisible){
+			batch.draw(assetsManager.helpMessage, -195,-325, 390, 650);
+			closeHelpBound = new BoundingBox(new Vector3(-195,-325,0), new Vector3(195,325,0));
+		}
+		
 		
 		batch.end();
 		
@@ -193,20 +214,35 @@ public class CodeBreak implements ApplicationListener {
 		if (Gdx.input.justTouched()){
 			camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));	
 			touchedColor = 0;
-			if (blueBound.contains(touchPoint) && round <9){
-				touchedColor = blueId;				
-			}else if (redBound.contains(touchPoint) && round <9){
-				touchedColor = redId;				
-			}else if (greenBound.contains(touchPoint) && round <9){
-				touchedColor = greenId;
-			}else if (purpleBound.contains(touchPoint) && round <9){
-				touchedColor = purpleId;
-			}else if (yellowBound.contains(touchPoint) && round <9){
-				touchedColor = yellowId;
-			}else if (whiteBound.contains(touchPoint) && round <9){
-				touchedColor = whiteId;
+				
+			if(helpBound.contains(touchPoint)){
+					helpMessageIsVisible = true;				
 			}
+			if(helpMessageIsVisible){	
+				if(closeHelpBound.contains(touchPoint)){
+					helpMessageIsVisible = false;
+				}
+			}else{
+				if (blueBound.contains(touchPoint) && round <9){
+					touchedColor = blueId;				
+				}else if (redBound.contains(touchPoint) && round <9){
+					touchedColor = redId;				
+				}else if (greenBound.contains(touchPoint) && round <9){
+					touchedColor = greenId;
+				}else if (purpleBound.contains(touchPoint) && round <9){
+					touchedColor = purpleId;
+				}else if (yellowBound.contains(touchPoint) && round <9){
+					touchedColor = yellowId;
+				}else if (whiteBound.contains(touchPoint) && round <9){
+					touchedColor = whiteId;
+				}
 			
+			if(LoserMessageIsVisible){
+				if(btnTryAgainBound.contains(touchPoint)){
+					dispose();
+					create();
+				}
+			}
 			if(!firstSpaceIsEmpty[round-1]){
 				if (firstSpaceBound.contains(touchPoint)){
 					firstSpaceIsEmpty[round-1] = true;
@@ -231,8 +267,7 @@ public class CodeBreak implements ApplicationListener {
 				fourthSpaceColor[round-1] = 0;
 			}}
 			
-			
-			
+					
 			if (touchedColor > 0){
 				if (firstSpaceIsEmpty[round-1]){
 					firstSpaceColor[round-1] = touchedColor;
@@ -260,7 +295,11 @@ public class CodeBreak implements ApplicationListener {
 						btnCheckIsVisible = false;
 						hitsList = new boolean[]{false,false,false,false};
 						halfHitsList = new ArrayList <Integer> ();
-						if (round<=8){	round = round + 1;	}
+						if (round<=8){	round = round + 1;
+							if(round==9){
+								LoserMessageIsVisible=true;
+							}
+						}
 					}
 					
 				}
@@ -268,6 +307,7 @@ public class CodeBreak implements ApplicationListener {
 					btnCheckIsVisible = false;
 					}
 			
+		}
 		}
 	}
 
@@ -286,7 +326,7 @@ public class CodeBreak implements ApplicationListener {
 	private boolean drawSpaces (int space, int[] spaceColor, int round){
 		float yIncrementPerRound = 72f;
 		float xIncrementPerSpace = 71f;
-		float xValue = (-halfWidth + 61f);
+		float xValue = (-halfWidth + 98f);
 		float yValue = (-halfHeight + 39f);
 		
 		yValue = yValue + (yIncrementPerRound * round); 
@@ -311,24 +351,24 @@ public class CodeBreak implements ApplicationListener {
 	
 	private boolean drawBtnCheck (int round){
 		float yIncrementPerRound = 72f;
-		float xValue = (-halfWidth + 64f);
+		float xValue = (-halfWidth + 15f);
 		float yValue = (-halfHeight + 39f);				
 		yValue = yValue + (yIncrementPerRound * round);		
 		
-		batch.draw(assetsManager.btnCheck, xValue,yValue, 70,70);		
+		batch.draw(assetsManager.btnCheck, xValue,yValue, 150,75);		
 		return false;
 	}
 	
 	private BoundingBox assignBoundCheck (int round){
 		BoundingBox bound = new BoundingBox();
-		float yIncrementPerRound = 72f;
-		float xValue = (-halfWidth + 67f);
-		float downYValue = (-halfHeight + 46f);
+		float yIncrementPerRound = 70f;
+		float xValue = (-halfWidth + 15f);
+		float downYValue = (-halfHeight + 45f);
 		float upYValue;
 		downYValue = downYValue + (yIncrementPerRound * round);
 		upYValue = downYValue + 60;
 		
-		bound = new BoundingBox(new Vector3(xValue,downYValue, 0), new Vector3(xValue + 60f,upYValue,0));
+		bound = new BoundingBox(new Vector3(xValue,downYValue, 0), new Vector3(xValue + 150f,upYValue,0));
 //				
 		return bound;
 	}
@@ -394,7 +434,7 @@ public class CodeBreak implements ApplicationListener {
 		
 		yIncrementPerRound = 70f * round;
 		xIncrementPerSpace = 71f * space;
-		downXValue = -halfWidth + 67f;
+		downXValue = -halfWidth + 104f;
 		downYValue = -halfHeight + 45f;
 		upXValue = downXValue + 60f;
 		upYValue = downYValue + 60f;

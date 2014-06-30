@@ -15,8 +15,12 @@ public class Assets {
 	public AtlasRegion White;
 	public AtlasRegion btnCheckDown;
 	public AtlasRegion winnerMessage;
+	public AtlasRegion loserMessage;
+	public AtlasRegion tryAgain;
 	public AtlasRegion fullHit;
 	public AtlasRegion halfHit;
+	public AtlasRegion help;
+	public AtlasRegion helpMessage;
 	private TextureAtlas atlas; 
 	
 	Assets(){
@@ -31,8 +35,13 @@ public class Assets {
 		White = atlas.findRegion("Code_White");
 		btnCheckDown = atlas.findRegion("Code_BtnCheckDown");
 		winnerMessage = atlas.findRegion("Code_WinnerMessage");
+		loserMessage = atlas.findRegion("Code_LoserMessage");
+		tryAgain = atlas.findRegion("Code_TryAgain");
 		fullHit = atlas.findRegion("Code_FullHit");
 		halfHit = atlas.findRegion("Code_HalfHit");
+		help = atlas.findRegion("Code_Help");
+		helpMessage = atlas.findRegion("Code_HelpMessage");
+		
 		
 	}
 	
