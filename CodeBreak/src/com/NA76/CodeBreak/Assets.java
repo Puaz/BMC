@@ -21,6 +21,18 @@ public class Assets {
 	public AtlasRegion halfHit;
 	public AtlasRegion help;
 	public AtlasRegion helpMessage;
+	public AtlasRegion fullHitZero;
+	public AtlasRegion fullHitOne;
+	public AtlasRegion fullHitTwo;
+	public AtlasRegion fullHitThree;
+	public AtlasRegion fullHitFour;
+	public AtlasRegion halfHitZero;
+	public AtlasRegion halfHitOne;
+	public AtlasRegion halfHitTwo;
+	public AtlasRegion halfHitThree;
+	public AtlasRegion halfHitFour;
+	
+	
 	private TextureAtlas atlas; 
 	
 	Assets(){
@@ -41,7 +53,16 @@ public class Assets {
 		halfHit = atlas.findRegion("Code_HalfHit");
 		help = atlas.findRegion("Code_Help");
 		helpMessage = atlas.findRegion("Code_HelpMessage");
-		
+		fullHitZero = atlas.findRegion("Code_FullHit_Zero");
+		fullHitOne = atlas.findRegion("Code_FullHit_One");
+		fullHitTwo = atlas.findRegion("Code_FullHit_Two");
+		fullHitThree = atlas.findRegion("Code_FullHit_Three");
+		fullHitFour = atlas.findRegion("Code_FullHit_Four");
+		halfHitZero = atlas.findRegion("Code_HalfHit_Zero");
+		halfHitOne = atlas.findRegion("Code_HalfHit_One");
+		halfHitTwo = atlas.findRegion("Code_HalfHit_Two");
+		halfHitThree = atlas.findRegion("Code_HalfHit_Three");
+		halfHitFour = atlas.findRegion("Code_HalfHit_Four");
 		
 	}
 	

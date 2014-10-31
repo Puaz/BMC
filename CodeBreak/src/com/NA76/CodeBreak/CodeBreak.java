@@ -20,8 +20,7 @@ public class CodeBreak implements ApplicationListener {
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
 	
-	private float height;
-	private float width;
+
 	private float halfHeight;
 	private float halfWidth;
 	private Assets assetsManager;
@@ -29,6 +28,28 @@ public class CodeBreak implements ApplicationListener {
 	private int secondValue;
 	private int thirdValue;
 	private int fourthValue;
+	
+	
+	
+	private InteractiveElement blueColor;
+	private InteractiveElement firstSpaceColorSelected;
+	private InteractiveElement redColor;
+	private InteractiveElement greenColor;
+	private InteractiveElement purpleColor;
+	private InteractiveElement yellowColor;
+	private InteractiveElement whiteColor;
+	private InteractiveElement helpButton;
+	private InteractiveElement checkButton;
+	private InteractiveElement tryAgainButton;
+	private InteractiveElement fullHitsImage;
+	private InteractiveElement halfHitsImage;
+	
+	private final static int BLUE_ID 	= 1;
+	private final static int RED_ID 		= 2;
+	private final static int GREEN_ID 	= 3;
+	private final static int PURPLE_ID	= 4;
+	private final static int YELLOW_ID 	= 5;
+	private final static int WHITE_ID	= 6;
 	
 	
 	private int[] firstSpaceColor;
@@ -40,12 +61,7 @@ public class CodeBreak implements ApplicationListener {
 	private int[] fourthSpaceColor;
 	private boolean[] fourthSpaceIsEmpty;
 	private int touchedColor;
-	private static int blueId;
-	private static int redId;
-	private static int greenId;
-	private static int purpleId;
-	private static int yellowId;
-	private static int whiteId;
+
 	private boolean btnCheckIsVisible;
 	private boolean winnerMessageIsVisible;
 	private boolean LoserMessageIsVisible;
@@ -61,10 +77,7 @@ public class CodeBreak implements ApplicationListener {
 	
 	@Override
 	public void create() {
-		height = 800;
-		halfHeight = height/2;
-		width = 480;
-		halfWidth = width/2;
+
 		assetsManager = new Assets();		
 		batch = new SpriteBatch();
 		btnCheckIsVisible = false;
@@ -82,15 +95,22 @@ public class CodeBreak implements ApplicationListener {
 		fullHits = new int[9];
 		halfHits = new int[9];
 		round = 1;
-		blueId=1;
-		redId=2;
-		greenId=3;
-		purpleId=4;
-		yellowId=5;
-		whiteId=6;
+
 		codeIsCorrect = false;
 		hitsList = new boolean[]{false,false,false,false};
 		halfHitsList = new ArrayList <Integer> ();
+		blueColor = new InteractiveElement();
+		redColor = new InteractiveElement();
+		greenColor = new InteractiveElement();
+		purpleColor = new InteractiveElement();
+		yellowColor = new InteractiveElement();
+		whiteColor = new InteractiveElement();
+		firstSpaceColorSelected = new InteractiveElement();
+		helpButton = new InteractiveElement();
+		checkButton = new InteractiveElement();
+		tryAgainButton = new InteractiveElement();
+		fullHitsImage = new InteractiveElement();
+		halfHitsImage = new InteractiveElement();
 		
 		firstValue = getRandom();
 		secondValue = getRandom();
@@ -111,51 +131,67 @@ public class CodeBreak implements ApplicationListener {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
-		camera = new OrthographicCamera(width, height);
+		camera = new OrthographicCamera(ElementSizes.SCREEN_WIDTH, ElementSizes.SCREEN_HEIGHT);
 		
 		Vector3 touchPoint;
 		touchPoint = new Vector3();
-		BoundingBox blueBound;
-		BoundingBox redBound;
-		BoundingBox greenBound;
-		BoundingBox purpleBound;
-		BoundingBox yellowBound;
-		BoundingBox whiteBound;
 		BoundingBox firstSpaceBound = new BoundingBox();
 		BoundingBox secondSpaceBound = new BoundingBox();
 		BoundingBox thirdSpaceBound = new BoundingBox();
 		BoundingBox fourthSpaceBound = new BoundingBox();
-		BoundingBox btnCheckBound = new BoundingBox();
-		BoundingBox btnTryAgainBound = new BoundingBox();
-		BoundingBox helpBound = new BoundingBox();
+
 		BoundingBox closeHelpBound = new BoundingBox();
+
+
+		blueColor.setTexture(assetsManager.Blue);
+		blueColor.setProperties(ElementSizes.CODE_COLOR_WIDTH, ElementSizes.CODE_COLOR_HEIGHT, ScreenMap.X_VALUE_FIRST_COLOR_SELECTION_BAR, ScreenMap.Y_VALUE_SELECTION_BAR);
+		blueColor.setBorders(0f, 0f, 0f, 0f);
+		redColor.setTexture(assetsManager.Red);
+		redColor.setProperties(ElementSizes.CODE_COLOR_WIDTH, ElementSizes.CODE_COLOR_HEIGHT,  ScreenMap.X_VALUE_SECOND_COLOR_SELECTION_BAR, ScreenMap.Y_VALUE_SELECTION_BAR);
+		redColor.setBorders(0, 0, 0, 0);
+		greenColor.setTexture(assetsManager.Green);
+		greenColor.setProperties(ElementSizes.CODE_COLOR_WIDTH, ElementSizes.CODE_COLOR_HEIGHT,  ScreenMap.X_VALUE_THIRD_COLOR_SELECTION_BAR, ScreenMap.Y_VALUE_SELECTION_BAR);
+		greenColor.setBorders(0f, 0f, 0f, 0f);
+		purpleColor.setTexture(assetsManager.Purple);
+		purpleColor.setProperties(ElementSizes.CODE_COLOR_WIDTH, ElementSizes.CODE_COLOR_HEIGHT, ScreenMap.X_VALUE_FOURTH_COLOR_SELECTION_BAR, ScreenMap.Y_VALUE_SELECTION_BAR);
+		purpleColor.setBorders(0f, 0f, 0f, 0f);
+		yellowColor.setTexture(assetsManager.Yellow);
+		yellowColor.setProperties(ElementSizes.CODE_COLOR_WIDTH, ElementSizes.CODE_COLOR_HEIGHT,  ScreenMap.X_VALUE_FIFTH_COLOR_SELECTION_BAR, ScreenMap.Y_VALUE_SELECTION_BAR);
+		yellowColor.setBorders(0f, 0f, 0f, 0f);
+		whiteColor.setTexture(assetsManager.White);
+		whiteColor.setProperties(ElementSizes.CODE_COLOR_WIDTH, ElementSizes.CODE_COLOR_HEIGHT,  ScreenMap.X_VALUE_SIXTH_COLOR_SELECTION_BAR, ScreenMap.Y_VALUE_SELECTION_BAR);
+		helpButton.setTexture(assetsManager.help);
+		helpButton.setProperties(ElementSizes.HELP_BUTTON_WIDTH, ElementSizes.HELP_BUTTON_HEIGHT,  ScreenMap.X_VALUE_HELP_BUTTON, ScreenMap.Y_VALUE_HELP_BUTTON);
+		helpButton.setBorders(0f, 0f, 0f, 0f);
+		checkButton.setTexture(assetsManager.btnCheck);
+		checkButton.setBorders(0f, 0f, 0f, 0f);
+		tryAgainButton.setTexture(assetsManager.tryAgain);
+		tryAgainButton.setProperties(44f, 44f, -22, -60);
+		tryAgainButton.setBorders(0f, 0f, 0f, 0f);
+		fullHitsImage.setBorders(0f, 0f, 0f, 0f);
+		halfHitsImage.setBorders(0f, 0f, 0f, 0f);
 		
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		
-		batch.draw(assetsManager.background, -width/2, -height/2, width, height);
-		batch.draw(assetsManager.help, halfWidth - 50, halfHeight -50, 34, 34);
-		helpBound = new BoundingBox(new Vector3 (halfWidth -48, halfHeight - 48,0), new Vector3( halfWidth -18, halfHeight-18,0));
+		batch.draw(assetsManager.background, ScreenMap.X_VALUE_BACKGROUND, ScreenMap.Y_VALUE_BACKGROUND, 480, 800);
+		helpButton.draw(batch);
+		
 		
 		//
+		blueColor.draw(batch);
+//		batch.draw(assetsManager.Blue, -halfWidth + 27f,-halfWidth + 27f, 75, 75);		
+		redColor.draw(batch);
+//		batch.draw(assetsManager.Red, -halfWidth + 98f,-halfHeight + 29f, 75, 75);		
+		greenColor.draw(batch);
+//		batch.draw(assetsManager.Green, -halfWidth + 169f,-halfHeight + 29f, 75, 75);		
+		purpleColor.draw(batch);
+//		batch.draw(assetsManager.Purple, -halfWidth + 240f,-halfHeight + 29f, 75, 75);
+		yellowColor.draw(batch);		
+//		batch.draw(assetsManager.Yellow, -halfWidth + 311f,-halfHeight + 29f, 75, 75);
+		whiteColor.draw(batch);		
+//		batch.draw(assetsManager.White, -halfWidth + 382f,-halfHeight + 27f, 75, 75);
 		
-		batch.draw(assetsManager.Blue, -halfWidth + 27f,-halfHeight + 29f, 75, 75);
-		blueBound = new BoundingBox(new Vector3(-halfWidth + 33f,-halfHeight + 30f,0), new Vector3(-halfWidth + 93,-halfHeight + 90,0));
-		
-		batch.draw(assetsManager.Red, -halfWidth + 98f,-halfHeight + 29f, 75, 75);
-		redBound = new BoundingBox(new Vector3(-halfWidth + 104f,-halfHeight + 30f,0), new Vector3(-halfWidth + 164,-halfHeight + 90,0));
-		
-		batch.draw(assetsManager.Green, -halfWidth + 169f,-halfHeight + 29f, 75, 75);
-		greenBound = new BoundingBox(new Vector3(-halfWidth + 175f,-halfHeight + 30f,0), new Vector3(-halfWidth + 235,-halfHeight + 90,0));
-		
-		batch.draw(assetsManager.Purple, -halfWidth + 240f,-halfHeight + 29f, 75, 75);
-		purpleBound = new BoundingBox(new Vector3(-halfWidth + 246f,-halfHeight + 30f,0), new Vector3(-halfWidth + 306,-halfHeight + 90,0));
-		
-		batch.draw(assetsManager.Yellow, -halfWidth + 311f,-halfHeight + 29f, 75, 75);
-		yellowBound = new BoundingBox(new Vector3(-halfWidth + 317f,-halfHeight + 30f,0), new Vector3(-halfWidth + 377,-halfHeight + 90,0));
-		
-		batch.draw(assetsManager.White, -halfWidth + 382f,-halfHeight + 27f, 75, 75);
-		whiteBound = new BoundingBox(new Vector3(-halfWidth + 388f,-halfHeight + 30f,0), new Vector3(-halfWidth + 448,-halfHeight + 90,0));
 		
 		
 		
@@ -183,26 +219,27 @@ public class CodeBreak implements ApplicationListener {
 		}
 		
 		if (round>1){
-			drawHits(fullHits,halfHits,round,1);
+			drawClues(fullHits,halfHits,round);
 		}
 		
 //		 
 		if (btnCheckIsVisible){
-			btnCheckBound = assignBoundCheck(round);
+//			btnCheckBound = assignBoundCheck(round);
 			drawBtnCheck(round);			
 		}
 		
 		if (winnerMessageIsVisible){
 			batch.draw(assetsManager.winnerMessage, -200,-70, 400, 140);
+			tryAgainButton.draw(batch);
 		} else {
 			if (LoserMessageIsVisible){
 				batch.draw(assetsManager.loserMessage, -200,-70, 400, 140);
-				batch.draw(assetsManager.tryAgain, -22, -60, 44, 44);
-				btnTryAgainBound = new BoundingBox(new Vector3(-20f,-60f,0), new Vector3(20f,-20f,0));
+				tryAgainButton.draw(batch);
+				
 			}
 		}
 		if(helpMessageIsVisible){
-			batch.draw(assetsManager.helpMessage, -195,-325, 390, 650);
+			batch.draw(assetsManager.helpMessage, ScreenMap.X_VALUE_HELP_MESSAGE,ScreenMap.Y_VALUE_HELP_MESSAGE, 390, 650);
 			closeHelpBound = new BoundingBox(new Vector3(-195,-325,0), new Vector3(195,325,0));
 		}
 		
@@ -215,7 +252,7 @@ public class CodeBreak implements ApplicationListener {
 			camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));	
 			touchedColor = 0;
 				
-			if(helpBound.contains(touchPoint)){
+			if(helpButton.getBounds().contains(touchPoint)){
 					helpMessageIsVisible = true;				
 			}
 			if(helpMessageIsVisible){	
@@ -223,22 +260,22 @@ public class CodeBreak implements ApplicationListener {
 					helpMessageIsVisible = false;
 				}
 			}else{
-				if (blueBound.contains(touchPoint) && round <9){
-					touchedColor = blueId;				
-				}else if (redBound.contains(touchPoint) && round <9){
-					touchedColor = redId;				
-				}else if (greenBound.contains(touchPoint) && round <9){
-					touchedColor = greenId;
-				}else if (purpleBound.contains(touchPoint) && round <9){
-					touchedColor = purpleId;
-				}else if (yellowBound.contains(touchPoint) && round <9){
-					touchedColor = yellowId;
-				}else if (whiteBound.contains(touchPoint) && round <9){
-					touchedColor = whiteId;
+				if (blueColor.getBounds().contains(touchPoint) && round <9){
+					touchedColor = BLUE_ID;				
+				}else if (redColor.getBounds().contains(touchPoint) && round <9){
+					touchedColor = RED_ID;				
+				}else if (greenColor.getBounds().contains(touchPoint) && round <9){
+					touchedColor = GREEN_ID;
+				}else if (purpleColor.getBounds().contains(touchPoint) && round <9){
+					touchedColor = PURPLE_ID;
+				}else if (yellowColor.getBounds().contains(touchPoint) && round <9){
+					touchedColor = YELLOW_ID;
+				}else if (whiteColor.getBounds().contains(touchPoint) && round <9){
+					touchedColor = WHITE_ID;
 				}
 			
-			if(LoserMessageIsVisible){
-				if(btnTryAgainBound.contains(touchPoint)){
+			if(LoserMessageIsVisible || winnerMessageIsVisible){
+				if(tryAgainButton.getBounds().contains(touchPoint)){
 					dispose();
 					create();
 				}
@@ -285,7 +322,7 @@ public class CodeBreak implements ApplicationListener {
 			}			
 			if (!firstSpaceIsEmpty[round-1] && !secondSpaceIsEmpty[round-1] && !thirdSpaceIsEmpty[round-1] && !fourthSpaceIsEmpty[round-1]){
 				btnCheckIsVisible = true;
-				if(btnCheckBound.contains(touchPoint)){
+				if(checkButton.getBounds().contains(touchPoint)){
 //					
 					fullHits[round-1] = countFullHits(firstSpaceColor[round-1], secondSpaceColor[round-1],thirdSpaceColor[round-1], fourthSpaceColor[round-1]);
 					if (fullHits[round-1] == 4){
@@ -324,22 +361,46 @@ public class CodeBreak implements ApplicationListener {
 	}
 	
 	private boolean drawSpaces (int space, int[] spaceColor, int round){
-		float yIncrementPerRound = 72f;
-		float xIncrementPerSpace = 71f;
-		float xValue = (-halfWidth + 98f);
-		float yValue = (-halfHeight + 39f);
+
+		float xValue;
+		float yValue;
 		
-		yValue = yValue + (yIncrementPerRound * round); 
-		xValue = xValue + (xIncrementPerSpace * space);
-			
+		yValue = getYValueForAttempt(round); 
+		xValue = getXValueForPosition(space);
+	
 		
 		switch (spaceColor[round-1]){
-			case 1: batch.draw(assetsManager.Blue,xValue,yValue, 75, 75); break;
-			case 2: batch.draw(assetsManager.Red, xValue,yValue, 75, 75); break;
-			case 3: batch.draw(assetsManager.Green, xValue,yValue, 75, 75); break;
-			case 4: batch.draw(assetsManager.Purple, xValue,yValue, 75, 75); break;
-			case 5: batch.draw(assetsManager.Yellow, xValue,yValue, 75, 75); break;
-			case 6: batch.draw(assetsManager.White, xValue,yValue, 75, 75); break;}
+			case 1: 
+				firstSpaceColorSelected.setTexture(assetsManager.Blue);
+				firstSpaceColorSelected.setProperties(75f, 75f, xValue, yValue);
+				firstSpaceColorSelected.draw(batch);
+				break;
+			case 2: 				
+				firstSpaceColorSelected.setTexture(assetsManager.Red);
+				firstSpaceColorSelected.setProperties(75f, 75f, xValue, yValue);
+				firstSpaceColorSelected.draw(batch);
+				break;
+			case 3: 
+				firstSpaceColorSelected.setTexture(assetsManager.Green);
+				firstSpaceColorSelected.setProperties(75f, 75f, xValue, yValue);
+				firstSpaceColorSelected.draw(batch);
+				break;
+			case 4: 
+				firstSpaceColorSelected.setTexture(assetsManager.Purple);
+				firstSpaceColorSelected.setProperties(75f, 75f, xValue, yValue);
+				firstSpaceColorSelected.draw(batch);
+				break;
+			case 5: 
+				firstSpaceColorSelected.setTexture(assetsManager.Yellow);
+				firstSpaceColorSelected.setProperties(75f, 75f, xValue, yValue);
+				firstSpaceColorSelected.draw(batch);
+				break;
+			case 6: 
+				firstSpaceColorSelected.setTexture(assetsManager.White);
+				firstSpaceColorSelected.setProperties(75f, 75f, xValue, yValue);
+				firstSpaceColorSelected.draw(batch);
+				break;
+				}
 				
 		if (round>1){
 			round = round - 1;
@@ -350,73 +411,45 @@ public class CodeBreak implements ApplicationListener {
 	}
 	
 	private boolean drawBtnCheck (int round){
-		float yIncrementPerRound = 72f;
-		float xValue = (-halfWidth + 15f);
-		float yValue = (-halfHeight + 39f);				
-		yValue = yValue + (yIncrementPerRound * round);		
+	
+		float xValue = ScreenMap.X_VALUE_CHECK;
+		float yValue;			
+		yValue = getYValueForAttempt(round);	
 		
-		batch.draw(assetsManager.btnCheck, xValue,yValue, 150,75);		
+		checkButton.setProperties(150f, 75f, xValue, yValue);
+		checkButton.draw(batch);
+	
 		return false;
 	}
 	
-	private BoundingBox assignBoundCheck (int round){
-		BoundingBox bound = new BoundingBox();
-		float yIncrementPerRound = 70f;
-		float xValue = (-halfWidth + 15f);
-		float downYValue = (-halfHeight + 45f);
-		float upYValue;
-		downYValue = downYValue + (yIncrementPerRound * round);
-		upYValue = downYValue + 60;
-		
-		bound = new BoundingBox(new Vector3(xValue,downYValue, 0), new Vector3(xValue + 150f,upYValue,0));
-//				
-		return bound;
-	}
+//	private BoundingBox assignBoundCheck (int round){
+//		BoundingBox bound = new BoundingBox();
+//		float yIncrementPerRound = 70f;
+//		float xValue = (-halfWidth + 15f);
+//		float downYValue = (-halfHeight + 45f);
+//		float upYValue;
+//		downYValue = downYValue + (yIncrementPerRound * round);
+//		upYValue = downYValue + 60;
+//		
+//		bound = new BoundingBox(new Vector3(xValue,downYValue, 0), new Vector3(xValue + 150f,upYValue,0));
+////				
+//		return bound;
+//	}
 	
 	
 	
-	private boolean drawHits (int[] fHits, int[] hHits, int round, int spaceIndex){
-		float yIncrementPerRound = 72f;
-		float xIncrementPerSpace = 29f;		
-		float xValue = (-halfWidth + 42f);
-		float yValue = (-halfHeight + 3f);
-		int fHitsLatestIndex;
-		int hHitsLatestIndex;		
-		fHitsLatestIndex = fHits[round-2];
-		hHitsLatestIndex = hHits[round-2] + fHitsLatestIndex;
-		
-		switch(spaceIndex){
-		case 1: 
-			yValue = yValue + (yIncrementPerRound * round); 
-			xValue = xValue + xIncrementPerSpace;
-			break;
-		case 2:
-			yValue = yValue + (yIncrementPerRound * round); 
-			xValue = xValue + 2 * xIncrementPerSpace;
-			break;
-		case 3:
-			yValue = yValue + (yIncrementPerRound * round) - xIncrementPerSpace; 
-			xValue = xValue + xIncrementPerSpace;
-			break;
-		case 4:
-			yValue = yValue + (yIncrementPerRound * round) - xIncrementPerSpace; 
-			xValue = xValue + 2 * xIncrementPerSpace;
-			break;			
-		}			
-		
-		if (spaceIndex <= fHitsLatestIndex){
-			batch.draw(assetsManager.fullHit,xValue,yValue, 26, 26);
-			spaceIndex = spaceIndex + 1;			
-		}else if (spaceIndex <= hHitsLatestIndex){
-			batch.draw(assetsManager.halfHit,xValue,yValue, 26, 26);
-			spaceIndex = spaceIndex + 1;
-		}
-		if (spaceIndex <= hHitsLatestIndex){
-		drawHits(fHits, hHits, round, spaceIndex);	}
-				
+	private boolean drawClues (int[] fHits, int[] hHits, int round){
+		float yValue = 0f;
+		setFullHitImage(fHits, round-2);
+		setHalfHitImage(hHits, round-2);
+		yValue = getYValueForAttempt(round-1);
+		fullHitsImage.setProperties(65f, 65f, ScreenMap.X_VALUE_FULL_HIT_CLUE, yValue+5f);
+		halfHitsImage.setProperties(65f, 65f, ScreenMap.X_VALUE_HALF_HIT_CLUE, yValue+5f);
+		fullHitsImage.draw(batch);
+		halfHitsImage.draw(batch);				
 		if (round>2){
 			round = round - 1;
-			drawHits(fHits, hHits, round, 1);
+			drawClues(fHits, hHits, round);
 		}		
 		
 		return false;
@@ -434,8 +467,8 @@ public class CodeBreak implements ApplicationListener {
 		
 		yIncrementPerRound = 70f * round;
 		xIncrementPerSpace = 71f * space;
-		downXValue = -halfWidth + 104f;
-		downYValue = -halfHeight + 45f;
+		downXValue = -240 + 104f;
+		downYValue = -400 + 45f;
 		upXValue = downXValue + 60f;
 		upYValue = downYValue + 60f;
 		
@@ -514,8 +547,98 @@ public class CodeBreak implements ApplicationListener {
 		return RandomValue;
 	}
 	
-
+	private float getXValueForPosition(int Position){
+		float xValue = 0f;
+		switch (Position){
+		case 1:
+			xValue = ScreenMap.X_VALUE_FIRST_COLOR_ATTEMPT;
+			break;
+		case 2:
+			xValue = ScreenMap.X_VALUE_SECOND_COLOR_ATTEMPT;
+			break;
+		case 3:
+			xValue = ScreenMap.X_VALUE_THIRD_COLOR_ATTEMPT;
+			break;
+		case 4:
+			xValue = ScreenMap.X_VALUE_FOURTH_COLOR_ATTEMPT;
+			break;			
+		}
+		
+		return xValue;
+	}
 	
+	private float getYValueForAttempt(int Attempt){
+		float yValue =0f;
+		switch (Attempt){
+			case 1:
+				yValue = ScreenMap.Y_VALUE_FIRST_ATTEMPT;
+				break;
+			case 2:
+				yValue = ScreenMap.Y_VALUE_SECOND_ATTEMPT;
+				break;
+			case 3:
+				yValue = ScreenMap.Y_VALUE_THIRD_ATTEMPT;
+				break;
+			case 4:
+				yValue = ScreenMap.Y_VALUE_FOURTH_ATTEMPT;
+				break;
+			case 5:
+				yValue = ScreenMap.Y_VALUE_FIFTH_ATTEMPT;
+				break;
+			case 6:
+				yValue = ScreenMap.Y_VALUE_SIXTH_ATTEMPT;
+				break;
+			case 7:
+				yValue = ScreenMap.Y_VALUE_SEVENTH_ATTEMPT;
+				break;
+			case 8:
+				yValue = ScreenMap.Y_VALUE_EIGHT_ATTEMPT;
+				break;
+		}
+		
+		return yValue;
+	}
+	
+	private void setFullHitImage(int[] fHits, int round){
+		switch (fHits[round]){
+			case 0:
+				fullHitsImage.setTexture(assetsManager.fullHitZero);
+				break;
+			case 1:
+				fullHitsImage.setTexture(assetsManager.fullHitOne);
+				break;
+			case 2:
+				fullHitsImage.setTexture(assetsManager.fullHitTwo);
+				break;
+			case 3:
+				fullHitsImage.setTexture(assetsManager.fullHitThree);
+				break;
+			case 4:
+				fullHitsImage.setTexture(assetsManager.fullHitFour);
+				break;
+		}
+	}
+	
+	private void setHalfHitImage(int[] hHits, int round){
+		switch (hHits[round]){
+			case 0:
+				halfHitsImage.setTexture(assetsManager.halfHitZero);
+				break;
+			case 1:
+				halfHitsImage.setTexture(assetsManager.halfHitOne);
+				break;
+			case 2:
+				halfHitsImage.setTexture(assetsManager.halfHitTwo);
+				break;
+			case 3:
+				halfHitsImage.setTexture(assetsManager.halfHitThree);
+				break;
+			case 4:
+				halfHitsImage.setTexture(assetsManager.halfHitFour);
+				break;
+		}
+	}
+
 }
 
 
