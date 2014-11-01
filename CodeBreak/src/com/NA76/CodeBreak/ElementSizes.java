@@ -22,4 +22,10 @@ public class ElementSizes {
 //	Clue size	
 	public final static float CLUE_HEIGHT 			= 650f;
 	public final static float CLUE_WIDTH 			= 390f;
+//	Time font size
+	public final static float TIME_FONT_HEIGHT 		= 15f;
+	public final static float TIME_FONT_WIDTH 		= 15f;
+//	Score font size
+	public final static float SCORE_FONT_HEIGHT 	= 20f;
+	public final static float SCORE_FONT_WIDTH 		= 20f;
 }

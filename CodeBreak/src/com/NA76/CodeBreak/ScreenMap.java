@@ -44,6 +44,25 @@ public class ScreenMap {
 	public final static float X_VALUE_HALF_HIT_CLUE = -142f;
 	
 	
+	// Time
+	public final static float X_VALUE_TEN_MINUTES = 25f;
+	public final static float X_VALUE_ONE_MINUTES = 40f;
+	public final static float X_VALUE_TIME_SEPARATOR = 55f;
+	public final static float X_VALUE_TEN_SECONDS = 70f;
+	public final static float X_VALUE_ONE_SECONDS = 85f;
+	public final static float Y_VALUE_TIME = 360f;
+	
+	
+	// Score
+	public final static float X_VALUE_MILLION = 70f;
+	public final static float X_VALUE_HUNDRED_THOUSAND = 90f;
+	public final static float X_VALUE_TEN_THOUSAND = 110f;
+	public final static float X_VALUE_THOUSAND = 130f;
+	public final static float X_VALUE_HUNDRED = 150f;
+	public final static float X_VALUE_TEN = 170f;
+	public final static float X_VALUE_ONE = 190f;
+	public final static float Y_VALUE_SCORE = 290f;
+	
 	
 	
 	

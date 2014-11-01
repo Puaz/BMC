@@ -18,15 +18,17 @@ public class Main {
 		 Settings settings = new Settings();
 	        settings.paddingX=2;
 	        settings.paddingY=2;
-	        settings.maxHeight=2048;
-	        settings.maxWidth=2048;
-			settings.stripWhitespaceX = true;
-			settings.stripWhitespaceY = true;
+	        settings.maxHeight=1024;
+	        settings.maxWidth=1024;
+//			settings.stripWhitespaceX = true;
+//			settings.stripWhitespaceY = true;
 			settings.filterMag = TextureFilter.MipMapLinearLinear;
 			settings.filterMin = TextureFilter.MipMapLinearLinear;
 			settings.flattenPaths = true;
+			settings.square = true;
 
 	        TexturePacker.process(settings, "../CodeBreak/images", "../CodeBreak-android/assets/data", "gamePack");
+	        TexturePacker.process(settings, "../CodeBreak/images_text", "../CodeBreak-android/assets/data", "gamePackText");
 		
 		
 		new LwjglApplication(new CodeBreak(), cfg);

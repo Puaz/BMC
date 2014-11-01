@@ -5,190 +5,190 @@ filter: MipMapLinearLinear,MipMapLinearLinear
 repeat: none
 Code_Background
   rotate: false
-  xy: 2, 218
+  xy: 2, 221
   size: 480, 800
   orig: 480, 800
   offset: 0, 0
   index: -1
 Code_Blue
   rotate: false
-  xy: 404, 145
-  size: 72, 71
+  xy: 404, 144
+  size: 75, 75
   orig: 75, 75
   offset: 0, 0
   index: -1
 Code_BtnCheck
   rotate: false
   xy: 2, 2
-  size: 144, 72
+  size: 150, 75
   orig: 150, 75
   offset: 0, 0
   index: -1
 Code_BtnCheckDown
   rotate: false
-  xy: 404, 76
-  size: 68, 67
+  xy: 638, 157
+  size: 70, 70
   orig: 70, 70
-  offset: 2, 0
+  offset: 0, 0
   index: -1
 Code_FullHit
   rotate: false
-  xy: 370, 14
-  size: 60, 60
+  xy: 710, 157
+  size: 70, 70
   orig: 70, 70
-  offset: 3, 7
+  offset: 0, 0
   index: -1
 Code_FullHit_Four
   rotate: false
-  xy: 866, 947
-  size: 72, 71
+  xy: 876, 808
+  size: 75, 75
   orig: 75, 75
   offset: 0, 0
   index: -1
 Code_FullHit_One
   rotate: false
-  xy: 148, 3
-  size: 72, 71
+  xy: 154, 2
+  size: 75, 75
   orig: 75, 75
   offset: 0, 0
   index: -1
 Code_FullHit_Three
   rotate: false
-  xy: 866, 874
-  size: 72, 71
+  xy: 876, 731
+  size: 75, 75
   orig: 75, 75
   offset: 0, 0
   index: -1
 Code_FullHit_Two
   rotate: false
-  xy: 940, 947
-  size: 72, 71
+  xy: 231, 2
+  size: 75, 75
   orig: 75, 75
   offset: 0, 0
   index: -1
 Code_FullHit_Zero
   rotate: false
-  xy: 222, 3
-  size: 72, 71
+  xy: 876, 654
+  size: 75, 75
   orig: 75, 75
   offset: 0, 0
   index: -1
 Code_Green
   rotate: false
-  xy: 866, 801
-  size: 72, 71
+  xy: 308, 2
+  size: 75, 75
   orig: 75, 75
   offset: 0, 0
   index: -1
 Code_HalfHit
   rotate: false
-  xy: 940, 593
-  size: 60, 60
+  xy: 782, 157
+  size: 70, 70
   orig: 70, 70
-  offset: 3, 7
+  offset: 0, 0
   index: -1
 Code_HalfHit_Four
   rotate: false
-  xy: 940, 874
-  size: 72, 71
+  xy: 876, 577
+  size: 75, 75
   orig: 75, 75
   offset: 0, 0
   index: -1
 Code_HalfHit_One
   rotate: false
-  xy: 296, 3
-  size: 72, 71
+  xy: 876, 500
+  size: 75, 75
   orig: 75, 75
   offset: 0, 0
   index: -1
 Code_HalfHit_Three
   rotate: false
-  xy: 866, 728
-  size: 72, 71
+  xy: 876, 423
+  size: 75, 75
   orig: 75, 75
   offset: 0, 0
   index: -1
 Code_HalfHit_Two
   rotate: false
-  xy: 940, 801
-  size: 72, 71
+  xy: 404, 67
+  size: 75, 75
   orig: 75, 75
   offset: 0, 0
   index: -1
 Code_HalfHit_Zero
   rotate: false
-  xy: 866, 655
-  size: 72, 71
+  xy: 886, 346
+  size: 75, 75
   orig: 75, 75
   offset: 0, 0
   index: -1
 Code_Help
   rotate: false
-  xy: 432, 43
-  size: 31, 31
-  orig: 34, 34
-  offset: 2, 1
+  xy: 876, 885
+  size: 136, 136
+  orig: 136, 136
+  offset: 0, 0
   index: -1
 Code_HelpMessage
   rotate: false
-  xy: 484, 378
-  size: 380, 640
+  xy: 484, 371
+  size: 390, 650
   orig: 390, 650
-  offset: 5, 5
+  offset: 0, 0
   index: -1
 Code_LoserMessage
   rotate: false
-  xy: 2, 76
+  xy: 2, 79
   size: 400, 140
   orig: 400, 140
   offset: 0, 0
   index: -1
 Code_Purple
   rotate: false
-  xy: 940, 728
-  size: 72, 71
+  xy: 886, 269
+  size: 75, 75
   orig: 75, 75
   offset: 0, 0
   index: -1
 Code_Red
   rotate: false
-  xy: 866, 582
-  size: 72, 71
+  xy: 886, 192
+  size: 75, 75
   orig: 75, 75
   offset: 0, 0
   index: -1
 Rojo2
   rotate: false
-  xy: 866, 582
-  size: 72, 71
+  xy: 886, 192
+  size: 75, 75
   orig: 75, 75
   offset: 0, 0
   index: -1
 Code_TryAgain
   rotate: false
-  xy: 866, 464
-  size: 43, 43
+  xy: 953, 839
+  size: 44, 44
   orig: 44, 44
-  offset: 1, 0
+  offset: 0, 0
   index: -1
 Code_White
   rotate: false
-  xy: 940, 655
-  size: 72, 71
+  xy: 484, 152
+  size: 75, 75
   orig: 75, 75
   offset: 0, 0
   index: -1
 Code_WinnerMessage
   rotate: false
-  xy: 484, 236
+  xy: 484, 229
   size: 400, 140
   orig: 400, 140
   offset: 0, 0
   index: -1
 Code_Yellow
   rotate: false
-  xy: 866, 509
-  size: 72, 71
+  xy: 561, 152
+  size: 75, 75
   orig: 75, 75
   offset: 0, 0
   index: -1

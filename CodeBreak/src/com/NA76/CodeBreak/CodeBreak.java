@@ -28,8 +28,8 @@ public class CodeBreak implements ApplicationListener {
 	private int secondValue;
 	private int thirdValue;
 	private int fourthValue;
-	
-	
+	private Time time;
+	private Score score;
 	
 	private InteractiveElement blueColor;
 	private InteractiveElement firstSpaceColorSelected;
@@ -95,7 +95,6 @@ public class CodeBreak implements ApplicationListener {
 		fullHits = new int[9];
 		halfHits = new int[9];
 		round = 1;
-
 		codeIsCorrect = false;
 		hitsList = new boolean[]{false,false,false,false};
 		halfHitsList = new ArrayList <Integer> ();
@@ -111,12 +110,56 @@ public class CodeBreak implements ApplicationListener {
 		tryAgainButton = new InteractiveElement();
 		fullHitsImage = new InteractiveElement();
 		halfHitsImage = new InteractiveElement();
+		time = new Time();
+		score = new Score();
 		
 		firstValue = getRandom();
 		secondValue = getRandom();
 		thirdValue = getRandom();
 		fourthValue = getRandom();
 		
+	}
+	
+	private void nextLevel(){
+		assetsManager = new Assets();		
+		batch = new SpriteBatch();
+		btnCheckIsVisible = false;
+		winnerMessageIsVisible = false;
+		LoserMessageIsVisible = false;
+		helpMessageIsVisible = false;
+		firstSpaceIsEmpty = new boolean[]{true,true,true,true,true,true,true,true,true};
+		secondSpaceIsEmpty = new boolean[]{true,true,true,true,true,true,true,true,true};
+		thirdSpaceIsEmpty = new boolean[]{true,true,true,true,true,true,true,true,true};
+		fourthSpaceIsEmpty = new boolean[]{true,true,true,true,true,true,true,true,true};
+		firstSpaceColor = new int [9];
+		secondSpaceColor = new int [9];
+		thirdSpaceColor = new int [9];
+		fourthSpaceColor = new int [9];
+		fullHits = new int[9];
+		halfHits = new int[9];
+		round = 1;
+		codeIsCorrect = false;
+		hitsList = new boolean[]{false,false,false,false};
+		halfHitsList = new ArrayList <Integer> ();
+		blueColor = new InteractiveElement();
+		redColor = new InteractiveElement();
+		greenColor = new InteractiveElement();
+		purpleColor = new InteractiveElement();
+		yellowColor = new InteractiveElement();
+		whiteColor = new InteractiveElement();
+		firstSpaceColorSelected = new InteractiveElement();
+		helpButton = new InteractiveElement();
+		checkButton = new InteractiveElement();
+		tryAgainButton = new InteractiveElement();
+		fullHitsImage = new InteractiveElement();
+		halfHitsImage = new InteractiveElement();
+		time = new Time();
+		
+		firstValue = getRandom();
+		secondValue = getRandom();
+		thirdValue = getRandom();
+		fourthValue = getRandom();
+	
 	}
 
 	@Override
@@ -125,7 +168,6 @@ public class CodeBreak implements ApplicationListener {
 		assetsManager.dispose();
 		
 	}
-
 	@Override
 	public void render() {		
 		Gdx.gl.glClearColor(1, 1, 1, 1);
@@ -141,6 +183,9 @@ public class CodeBreak implements ApplicationListener {
 		BoundingBox fourthSpaceBound = new BoundingBox();
 
 		BoundingBox closeHelpBound = new BoundingBox();
+		
+		
+
 
 
 		blueColor.setTexture(assetsManager.Blue);
@@ -174,7 +219,12 @@ public class CodeBreak implements ApplicationListener {
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		
+		
 		batch.draw(assetsManager.background, ScreenMap.X_VALUE_BACKGROUND, ScreenMap.Y_VALUE_BACKGROUND, 480, 800);
+		time.count(Gdx.graphics.getDeltaTime());		
+		time.draw(batch);
+		score.draw(batch);
+		
 		helpButton.draw(batch);
 		
 		
@@ -274,10 +324,15 @@ public class CodeBreak implements ApplicationListener {
 					touchedColor = WHITE_ID;
 				}
 			
-			if(LoserMessageIsVisible || winnerMessageIsVisible){
+			if(LoserMessageIsVisible ){
 				if(tryAgainButton.getBounds().contains(touchPoint)){
 					dispose();
 					create();
+				}
+			}else if ( winnerMessageIsVisible){
+				if(tryAgainButton.getBounds().contains(touchPoint)){
+					dispose();
+					nextLevel();
 				}
 			}
 			if(!firstSpaceIsEmpty[round-1]){
@@ -327,6 +382,10 @@ public class CodeBreak implements ApplicationListener {
 					fullHits[round-1] = countFullHits(firstSpaceColor[round-1], secondSpaceColor[round-1],thirdSpaceColor[round-1], fourthSpaceColor[round-1]);
 					if (fullHits[round-1] == 4){
 						winnerMessageIsVisible = true;
+						int scoreForMatch = ((300 - time.getTime()) * 15);
+						scoreForMatch = scoreForMatch + ((8-round)*1000);
+						score.addToScore(scoreForMatch);
+
 					} else{
 						halfHits[round-1] = countHalfHits(); 
 						btnCheckIsVisible = false;
@@ -638,6 +697,8 @@ public class CodeBreak implements ApplicationListener {
 				break;
 		}
 	}
+
+
 
 }
 
